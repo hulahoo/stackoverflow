@@ -16,6 +16,8 @@ SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = env("DEBUG")
 
+# define a var to configure Django which user implementation to use
+AUTH_USER_MODEL = "account.CustomUser"
 
 ALLOWED_HOSTS = ['*']
 # Allow all hosts = '*'
@@ -23,12 +25,18 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    # django applications
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # libs
+    'rest_framework',
+
+    # local applications
     'account'
 ]
 
