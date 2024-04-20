@@ -17,3 +17,32 @@ After creating a new model in models.py and check that this application is added
     ```bash
     python -m manage migrate
     ```
+3. Run Django application:
+    ```
+    python -m manage runserver <port number>(default :8000)
+
+
+MVC -> Model View Controller
+
+Authentication verifies the identity of a user, who is user
+Authorization show to which resources user have access
+
+Simple url address of some resource: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses
+                                     https://developer.mozilla.org/fr/docs/Web/HTTP/Status
+                                     https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status
+                                     https://developer.mozilla.org/en-US/docs/Web/HTTP
+http://<ip-address>/<domain name>:<port address>
+      34.111.97.67/developer.mozilla.org
+      127.0.0.1(0.0.0.0):8000/localhost
+
+### DNS(Domain Name System)
+34.111.97.67 -> google.com
+IPv4/IPv6
+34.111.97.67 - IPv4
+2400:cb00:2048:1::c629:d7a2 - IPv6
+
+### Phonebook example
+898412343125 -> Tom
+
+http://127.0.0.1:8000/
+http://127.0.0.1:5432

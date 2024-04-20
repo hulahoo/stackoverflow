@@ -1,3 +1,7 @@
+"""
+Models
+"""
+
 from django.db import models
 from rest_framework import status
 from django.utils.crypto import get_random_string
@@ -72,6 +76,9 @@ class CustomUser(AbstractBaseUser):
             allowed_chars="1234567890_+!@#$%^&*("
         )
         self.activation_code = code
+
+    class Meta:
+        db_table = "customuser"
 
 # CustomUser.objects.create_user(email, password)
 # CustomUser.objects.filter(email="email") -> Queryset -> SQL Language(INSERT INTO customuser (...) VALUES (...))
