@@ -17,7 +17,9 @@ class CustomUserManager(BaseUserManager):
         password: str | None,
         **extra_fields
     ) -> "CustomUser":
-        if not email or password:
+        print(password)
+        print(email)
+        if not email or not password:
             raise ValidationError(
                 detail="Authorization data invalid",
                 code=status.HTTP_400_BAD_REQUEST
@@ -76,9 +78,6 @@ class CustomUser(AbstractBaseUser):
             allowed_chars="1234567890_+!@#$%^&*("
         )
         self.activation_code = code
-
-    class Meta:
-        db_table = "customuser"
 
 # CustomUser.objects.create_user(email, password)
 # CustomUser.objects.filter(email="email") -> Queryset -> SQL Language(INSERT INTO customuser (...) VALUES (...))
