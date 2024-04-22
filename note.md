@@ -46,3 +46,32 @@ IPv4/IPv6
 
 http://127.0.0.1:8000/
 http://127.0.0.1:5432
+
+
+## Django Email configurations
+
+1. Declare EMAIL_BACKEND:
+    1.1. If we want to send real email message to existing email address:
+    ```python
+        EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    ```
+    1.2. If we want to send a test email to console(terminal/cli):
+    ```python
+        EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+    ```
+
+
+## Django Queryset methods
+
+1. To add filtering by column values, use .filter():
+    ```python
+        user = CustomUser.objects.filter(email=self.email, activation_code=self.code).all()
+    ```
+2. To retrieve all values from column, use .all():
+    ```python
+        users = CustomUser.objects.all() # List[CustomUser] -> Returns a list of CustomUser objects
+    ```
+3. To retrieve only first record from a list of records, use .first():
+    ```python
+        users = CustomUser.objects.first() # CustomUser | None -> Returns object of CustomUser or None if no records exists in table
+    ```
