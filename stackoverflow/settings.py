@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # local applications
-    'account'
+    'account',
+    'problem'
 ]
 
 MIDDLEWARE = [

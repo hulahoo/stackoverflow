@@ -18,8 +18,13 @@ After creating a new model in models.py and check that this application is added
     python -m manage migrate
     ```
 3. Run Django application:
-    ```
+    ```bash
     python -m manage runserver <port number>(default :8000)
+    ```
+4. Create Django custom app:
+    ```bash
+    django-admin startapp <app name>
+    ```
 
 
 MVC -> Model View Controller
@@ -75,3 +80,10 @@ http://127.0.0.1:5432
     ```python
         users = CustomUser.objects.first() # CustomUser | None -> Returns object of CustomUser or None if no records exists in table
     ```
+
+
+ON DELETE CLAUSES
+
+1. CASCADE - delete all related objects
+2. DO_NOTHING - do nothing
+3. PROTECT - not allow to delete
