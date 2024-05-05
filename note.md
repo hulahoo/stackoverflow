@@ -87,3 +87,7 @@ ON DELETE CLAUSES
 1. CASCADE - delete all related objects
 2. DO_NOTHING - do nothing
 3. PROTECT - not allow to delete
+
+
+Authentications:
+1. BasicAuthentication -> https://www.django-rest-framework.org/api-guide/authentication/#basicauthentication
