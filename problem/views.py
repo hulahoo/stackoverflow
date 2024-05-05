@@ -22,11 +22,22 @@ from rest_framework.views import APIView
 from rest_framework.request import Request
 from rest_framework.response import Response
 
+from .serializers import ProblemSerializer
+
 
 class CreateProblemView(APIView):
 
     def post(self, request: Request):
-        return Response(
-            data="Success",
-            status=201
+        data = request.data
+        pictures = request.FILES
+        print(pictures)
+        problem_serializer = ProblemSerializer(
+            data=data,
+            context={"pictures": pictures}
         )
+        if problem_serializer.is_valid(raise_exception=True):
+            problem_serializer.save()
+            return Response(
+                data={"data": problem_serializer.data},
+                status=201
+            )
