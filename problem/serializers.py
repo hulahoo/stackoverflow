@@ -20,7 +20,8 @@ class PictureSerializer(serializers.ModelSerializer):
 class ProblemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Problem
-        fields = ["title", "description", "author"]
+        fields = ["title", "description", "author", "id"]
+        read_only_fields = ["id", "author"]
 
     def create_pictures(self, pictures: list, problem: Problem):
         for picture in pictures.getlist("picture"):
@@ -34,11 +35,14 @@ class ProblemSerializer(serializers.ModelSerializer):
                 serializer.save()
 
     def create(self, validated_data: dict) -> Problem:
+        validated_data["author"] = self.context["user"]
+
         problem = Problem.objects.create(**validated_data)
         pictures = self.context.get("pictures", [])
 
         if pictures:
             self.create_pictures(pictures, problem)
+
         return problem
 
 

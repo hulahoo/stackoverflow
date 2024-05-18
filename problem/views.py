@@ -18,11 +18,17 @@ URLs:
     1. POST 127.0.0.1:8000/api/v1/problems/ - create problem
     2. GET 127.0.0.1:8000/api/v1/problems/ - list all problems
     3. GET 127.0.0.1:8000/api/v1/problems/{:problem_id}/ - get problem details by its id
-"""
 
+Authentification
+Request to create problem -> request.data, request.user check if user is_active=True and user exists in database
+Request: data, user
+
+If user authenticated -> request.user = CustomUser
+"""
 from rest_framework.views import APIView
 from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import (
     ListAPIView,
     RetrieveAPIView
@@ -38,12 +44,17 @@ from .serializers import (
 # Creating Problem
 class CreateProblemView(APIView):
 
+    permission_classes = [IsAuthenticated]
+
     def post(self, request: Request):
         data = request.data
         pictures = request.FILES
         problem_serializer = ProblemSerializer(
             data=data,
-            context={"pictures": pictures}
+            context={
+                "pictures": pictures,
+                "user": request.user
+            }
         )
         if problem_serializer.is_valid(raise_exception=True):
             problem_serializer.save()
@@ -56,6 +67,7 @@ class CreateProblemView(APIView):
 class ListProblemView(ListAPIView):
     queryset = Problem.objects.all()
     serializer_class = ListProblemSerializer
+    permission_classes = [IsAuthenticated]
 
     # def get_serializer_context(self): # to pass extra context to serializer
         # return super().get_serializer_context()
@@ -63,5 +75,6 @@ class ListProblemView(ListAPIView):
 # Reading single problem instance
 class DetailProblemView(RetrieveAPIView):
     lookup_field = "pk"
+    permission_classes = [IsAuthenticated]
     queryset = Problem.objects.all()
     serializer_class = DetailProblemSerializer

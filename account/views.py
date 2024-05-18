@@ -48,3 +48,4 @@ def user_activation(request: Request):
             data={"message": f"Congrats! {request.data.get('email')} passed registration"},
             status=200
         )
+

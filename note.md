@@ -10,6 +10,14 @@ Pull the latest changes from Git:
     ```bash
     git pull origin main
     ```
+2. To save your local changes and store them use `git stash`:
+    ```bash
+    git stash
+    ```
+3. To apply back all latest changes that was stashed:
+    ```bash
+    git stash pop
+    ```
 
 After creating a new model in models.py and check that this application is added to settings.py.INSTALLED_APPS:
 1. Create migration files:
@@ -94,4 +102,10 @@ ON DELETE CLAUSES
 
 
 Authentications:
-1. BasicAuthentication -> https://www.django-rest-framework.org/api-guide/authentication/#basicauthentication
+1. BasicAuthentication -> https://www.django-rest-framework.org/api-guide/authentication/#basicauthentication: Authorization: tof password(BasicAuthentication)
+2. TokenAuthentication -> https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication: Authorization: Token fadshfadslfhalsdfhadsiofg83421412412(TokenAuthentication)
+3. JWT -> https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html#requirements: Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+
+Login -> User get token fadshfadslfhalsdfhadsiofg83421412412
+Logout -> Mark fadshfadslfhalsdfhadsiofg83421412412 token as invalid, to avoid future using of it, simply called blacklist
+
