@@ -5,8 +5,11 @@ source venv/bin/activate -> Mac/*Unix
 
 pip3 install -r requirements.txt -> Install requirements to virtual environment
 
-
-git pull origin main -> Pulls latest changes from remote repository
+Pull the latest changes from Git:
+1. Pull changes:
+    ```bash
+    git pull origin main
+    ```
 
 After creating a new model in models.py and check that this application is added to settings.py.INSTALLED_APPS:
 1. Create migration files:
@@ -39,6 +42,7 @@ Simple url address of some resource: https://developer.mozilla.org/en-US/docs/We
 http://<ip-address>/<domain name>:<port address>
       34.111.97.67/developer.mozilla.org
       127.0.0.1(0.0.0.0):8000/localhost
+
 
 ### DNS(Domain Name System)
 34.111.97.67 -> google.com
