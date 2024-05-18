@@ -6,7 +6,7 @@ source venv/bin/activate -> Mac/*Unix
 pip3 install -r requirements.txt -> Install requirements to virtual environment
 
 Pull the latest changes from Git:
-1. Pull changes:
+1. Pull changes from repository:
     ```bash
     git pull origin main
     ```
