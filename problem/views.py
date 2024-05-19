@@ -1,5 +1,5 @@
 """
-CRUD:
+CRUD Actions:
 1. Create Problem/Reply/ReplyComment
 2. Read Problem/Reply/ReplyComment
 3. Update Problem/Reply/ReplyComment
@@ -31,15 +31,18 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import (
     ListAPIView,
-    RetrieveAPIView
+    RetrieveAPIView,
+    DestroyAPIView,
+    UpdateAPIView
 )
-
 from .models import Problem
 from .serializers import (
     ProblemSerializer,
     ListProblemSerializer,
-    DetailProblemSerializer
+    DetailProblemSerializer,
+    UpdateProblemSerializer
 )
+from permissions.problem import IsAuthorPermission
 
 # Creating Problem
 class CreateProblemView(APIView):
@@ -78,3 +81,16 @@ class DetailProblemView(RetrieveAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Problem.objects.all()
     serializer_class = DetailProblemSerializer
+
+# Destroy(Delete) single problem instance
+# Permission: Only author of a problem can delete problem => if request.user == problem.author: True else False
+class DestroyProblemView(DestroyAPIView):
+    permission_classes = [IsAuthenticated, IsAuthorPermission]
+    queryset = Problem.objects.all()
+
+
+class UpdateProblemView(UpdateAPIView):
+    permission_classes = [IsAuthenticated, IsAuthorPermission]
+    queryset = Problem.objects.all()
+    serializer_class = UpdateProblemSerializer
+

@@ -4,6 +4,7 @@ Django Rest Framework serializers type:
 1. Serializer
 2. ModelSerializer
 """
+from datetime import datetime
 
 from rest_framework import serializers
 
@@ -65,3 +66,15 @@ class DetailProblemSerializer(serializers.ModelSerializer):
         )
         representation["pictures"] = pictures.data
         return representation
+
+class UpdateProblemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Problem
+        fields = ("title", "description", "id", "author", "modified_at")
+        read_only_fields = ("id", "author", "modified_at")
+
+    def update(self, instance: Problem, validated_data: dict):
+        instance = super().update(instance, validated_data)
+        instance.modified_at = datetime.now()
+        instance.save()
+        return instance
