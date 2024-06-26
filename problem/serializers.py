@@ -67,6 +67,7 @@ class DetailProblemSerializer(serializers.ModelSerializer):
         representation["pictures"] = pictures.data
         return representation
 
+
 class UpdateProblemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Problem
