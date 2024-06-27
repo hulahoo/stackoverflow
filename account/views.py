@@ -16,7 +16,6 @@ http://localhost:8000/api/v1/auth/user/change
 http://localhost:8000/api/v1/users/ - Get all users
 http://localhost:8000/api/v1/users?filter[is_active]=True - Get all active users -> CustomUser.objects.filter(is_active=True) -> SELECT * FROM
 
-
 """
 
 from rest_framework.decorators import api_view
@@ -48,4 +47,3 @@ def user_activation(request: Request):
             data={"message": f"Congrats! {request.data.get('email')} passed registration"},
             status=200
         )
-

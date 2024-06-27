@@ -38,7 +38,9 @@ INSTALLED_APPS = [
 
     # local applications
     'account',
-    'problem'
+    'problem',
+    'reply',
+    'comment_reply'
 ]
 
 MIDDLEWARE = [

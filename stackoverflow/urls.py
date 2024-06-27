@@ -8,7 +8,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/auth/', include("account.urls")),
-    path('api/v1/problems/', include("problem.urls"))
+    path('api/v1/problems/', include("problem.urls")),
+    path('api/v1/', include("reply.urls")),
+    path('api/v1/', include("comment_reply.urls"))
     # http://127.0.0.1:8000/api/v1/auth/signup
 ]
 
