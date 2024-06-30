@@ -9,6 +9,7 @@ from datetime import datetime
 from rest_framework import serializers
 
 from .models import Problem, Picture
+from reply.serializers import ReplySerializer
 
 
 class PictureSerializer(serializers.ModelSerializer):
@@ -64,6 +65,11 @@ class DetailProblemSerializer(serializers.ModelSerializer):
             instance.pictures.all(),
             many=True
         )
+        replies = ReplySerializer(
+            instance.replies.all(),
+            many=True
+        )
+        representation["replies"] = replies.data
         representation["pictures"] = pictures.data
         return representation
 

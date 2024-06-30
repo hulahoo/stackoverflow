@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from reply.models import Reply
+from comment_reply.serializers import CommentReplySerializer
 
 
 class ReplySerializer(serializers.ModelSerializer):
@@ -19,3 +20,13 @@ class ReplySerializer(serializers.ModelSerializer):
         )
 
         return reply
+
+    def to_representation(self, instance: Reply) -> dict:
+        representation: dict = super().to_representation(instance)
+        comments = CommentReplySerializer(
+            instance.comments.all(),
+            many=True
+        )
+        representation["comments"] = comments.data
+
+        return representation
